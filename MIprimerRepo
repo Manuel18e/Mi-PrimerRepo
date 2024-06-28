@@ -1,0 +1,68 @@
+class Producto:
+    def __init__(self, la cura pal'Frío,350 -1500 -2000, 5000000 tallas disponibles, 3 piezas por talla ):
+        self.la cura pal'Frío = la cura pal'Frío 5000000 tallas disponibles
+        self.350 -1500 -2000 = 350 -1500 -2000
+        self.5000000 tallas disponibles = 5000000 tallas disponibles
+        self.5000000 tallas disponibles = 5000000 tallas disponibles
+
+    def mostrar_tienda de ropa de invierno(self):
+        print(f"Producto: {self.la cura pal'Frío}")
+        print(f ${self.}")
+        print("Tallas disponibles:")
+        for talla, cantidad in self.cantidad_por_talla.items():
+            print(f"Talla {talla}: {cantidad} unidades")
+
+    def realizar_venta(self, talla, cantidad):
+        if talla in self.cantidad_por_talla and self.cantidad_por_talla[talla] >= cantidad:
+            self.cantidad_por_talla[talla] -= cantidad
+            print(f"Venta realizada: {cantidad} unidades de talla {talla} de {self.nombre}.")
+            print(f"Total a pagar: ${self.precio * cantidad}")
+        else:
+            print(f"No hay suficientes unidades de talla {talla} de {self.nombre} en stock.")
+
+
+class TiendaRopa:
+    def __init__(self):
+        self.inventario = []
+
+    def agregar_producto(self, nombre, precio, tallas_disponibles, cantidad_por_talla):
+        producto = Producto(nombre, precio, tallas_disponibles, cantidad_por_talla)
+        self.inventario.append(producto)
+        print(f"Producto '{nombre}' agregado al inventario.")
+
+    def mostrar_inventario(self):
+        if not self.inventario:
+            print("El inventario está vacío.")
+        else:
+            print("Inventario de la tienda de ropa:")
+            for producto in self.inventario:
+                producto.mostrar_informacion()
+                print("--------------------------")
+
+    def realizar_venta(self, nombre, talla, cantidad):
+        for producto in self.inventario:
+            if producto.nombre == nombre:
+                producto.realizar_venta(talla, cantidad)
+                return
+        print(f"El producto '{nombre}' no se encontró en el inventario.")
+
+
+# Ejemplo de uso del código:
+tienda = TiendaRopa()
+
+# Agregar productos al inventario
+tienda.agregar_producto("Camisa", 30, ["S", "M", "L"], {"S": 10, "M": 15, "L": 8})
+tienda.agregar_producto("Pantalón", 50, ["32", "34", "36"], {"32": 12, "34": 10, "36": 5})
+tienda.agregar_producto("Abrigo", 100, ["M", "L", "XL"], {"M": 5, "L": 3, "XL": 2})
+
+# Mostrar el inventario
+tienda.mostrar_inventario()
+
+# Realizar ventas
+tienda.realizar_venta("Camisa", "M", 3)
+tienda.realizar_venta("Pantalón", "34", 2)
+tienda.realizar_venta("Abrigo", "XL", 1)
+tienda.realizar_venta("Abrigo", "S", 1)  # Intentar vender una talla que no está en stock
+
+# Mostrar el inventario actualizado
+tienda.mostrar_inventario()
